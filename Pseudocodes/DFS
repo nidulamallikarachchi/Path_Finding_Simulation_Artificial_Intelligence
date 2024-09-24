@@ -1,0 +1,16 @@
+Procedure DFS(start_node, goal)
+    Initialize:
+        stack <- new Stack(start_node)
+        visited <- new Set(start_node)
+
+    While stack is not empty:
+        node <- stack.pop()
+        If node is goal:
+            return True
+
+        For each neighbor in node.neighbors:
+            If neighbor not in visited:
+                visited.add(neighbor)
+                stack.push(neighbor)
+
+    Return False

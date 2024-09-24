@@ -1,0 +1,16 @@
+Procedure BFS(start_node, goal)
+    Initialize:
+        queue <- new Queue(start_node)
+        visited <- new Set(start_node)
+
+    While queue is not empty:
+        node <- queue.dequeue()
+        If node is goal:
+            return True
+
+        For each neighbor in node.neighbors:
+            If neighbor not in visited:
+                visited.add(neighbor)
+                queue.enqueue(neighbor)
+
+    Return False

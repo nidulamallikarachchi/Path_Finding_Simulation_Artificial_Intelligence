@@ -1,0 +1,21 @@
+Procedure A_Star(start_node, goal, heuristic)
+    Initialize:
+        open_set <- new PriorityQueue(start_node, heuristic(start_node))
+        came_from <- new Map()
+        g_score <- new Map(start_node, 0)
+        f_score <- new Map(start_node, heuristic(start_node))
+
+    While not open_set.empty():
+        current <- open_set.pop()
+        If current is goal:
+            return reconstruct_path(came_from, current)
+
+        For each neighbor in current.neighbors:
+            tentative_g_score <- g_score[current] + dist(current, neighbor)
+            If tentative_g_score < g_score.get(neighbor, Infinity):
+                came_from[neighbor] = current
+                g_score[neighbor] = tentative_g_score
+                f_score[neighbor] = tentative_g_score + heuristic(neighbor)
+                open_set.push(neighbor, f_score[neighbor])
+
+    Return None

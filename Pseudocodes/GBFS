@@ -1,0 +1,16 @@
+Procedure GBFS(start_node, goal, heuristic)
+    Initialize:
+        priority_queue <- new PriorityQueue(start_node, heuristic(start_node))
+        visited <- new Set(start_node)
+
+    While not priority_queue.empty():
+        node <- priority_queue.pop()
+        If node is goal:
+            return True
+
+        For each neighbor in node.neighbors:
+            If neighbor not in visited:
+                visited.add(neighbor)
+                priority_queue.push(neighbor, heuristic(neighbor))
+
+    Return False

@@ -1,0 +1,24 @@
+Procedure IDA_Star(start_node, goal, heuristic)
+    threshold <- heuristic(start_node)
+    While True:
+        result <- search(start_node, 0, threshold, goal, heuristic)
+        If result == "FOUND":
+            return True
+        If result == Infinity:
+            return False
+        threshold <- result
+
+Function search(node, g, threshold, goal, heuristic)
+    f <- g + heuristic(node)
+    If f > threshold:
+        return f
+    If node is goal:
+        return "FOUND"
+    min <- Infinity
+    For each neighbor in node.neighbors:
+        temp <- search(neighbor, g + dist(node, neighbor), threshold, goal, heuristic)
+        If temp == "FOUND":
+            return "FOUND"
+        If temp < min:
+            min = temp
+    Return min

@@ -1,0 +1,16 @@
+Procedure IDDFS(start_node, goal)
+    depth <- 0
+    While True:
+        result <- DLS(start_node, goal, depth)
+        If result:
+            return result
+        depth += 1
+
+Function DLS(node, goal, depth)
+    If depth == 0 and node is goal:
+        return True
+    ElseIf depth > 0:
+        For each neighbor in node.neighbors:
+            If DLS(neighbor, goal, depth - 1):
+                return True
+    Return False
